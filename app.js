@@ -53,8 +53,6 @@ const sessionOption = {
     }
 };
 
-
-
 app.use(session(sessionOption));
 app.use(flash());
 
@@ -71,17 +69,6 @@ app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
     next();
 })
-
-app.get("/registeruser",async (req,res)=>{
-    const fakeUser = new User({
-        email:"sidd@gmail.com",
-        username:"sidd"
-    });
-
-    let newUser = await User.register(fakeUser, "Sidd@#12");
-    res.send(newUser);
-});
-
 
 main()
 .then(()=>{
