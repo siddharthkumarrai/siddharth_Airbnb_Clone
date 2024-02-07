@@ -85,6 +85,9 @@ app.use((error,request,response,next)=>{
     response.status(statusCode).render("error.ejs",{message});
 });
 
+app.all("*",(request,response,next)=>{
+    next(new ExpressError(404,"Page Not Found"));
+});
 
 const port = 8080;
 app.listen(8080,()=>{
