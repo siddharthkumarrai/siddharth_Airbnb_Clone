@@ -1,5 +1,5 @@
 if(process.env.NODE_ENV != "production"){
-    require('dotenv').config();
+    require('dotenv').config()
 };
 
 const express = require("express");
@@ -41,7 +41,7 @@ const store = MongoStore.create({
 });
 
 store.on(error,(error)=>{
-    console.log("Error IN MONGOSESSION STORE",error);
+    console.log("Error IN MONGOSESSION STORE",error)
 });
 
 const sessionOption = {
@@ -82,7 +82,7 @@ main()
     console.log(error)
 })
 async function main(){
-    await mongoose.connect(MONGO_URL)
+    await mongoose.connect(DB_URL)
 };
 
 // app.get("/",(request,response)=>{
@@ -109,12 +109,12 @@ async function main(){
 
 
 app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"))
+    next( )
 });
 
 app.use((error,request,response,next)=>{
     let {statusCode = 500,message = "something went wrong"} = error;
-    response.status(statusCode).render("error.ejs",{message});
+    response.status(statusCode).render("error.ejs",{message})
     // response.status(statusCode).send(message);
 });
 
