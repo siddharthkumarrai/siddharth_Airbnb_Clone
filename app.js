@@ -108,9 +108,7 @@ async function main(){
 // });
 
 
-app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"))
-});
+
 
 app.use((error,request,response,next)=>{
     let {statusCode = 500,message = "something went wrong"} = error;
@@ -118,6 +116,9 @@ app.use((error,request,response,next)=>{
     // response.status(statusCode).send(message);
 });
 
+app.all("*",(request,response,next)=>{
+    next(new ExpressError(404,"Page Not Found"))
+});
 
 const port = 8080;
 app.listen(8080,()=>{
