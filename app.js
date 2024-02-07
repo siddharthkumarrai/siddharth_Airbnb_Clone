@@ -41,7 +41,7 @@ const store = MongoStore.create({
 });
 
 store.on(error,(error)=>{
-    console.log("Error IN MONGOSESSION STORE",error)
+    console.log("ERROR IN MONGOSESSION STORE",error)
 });
 
 const sessionOption = {
@@ -85,29 +85,15 @@ async function main(){
     await mongoose.connect(DB_URL)
 };
 
-// app.get("/",(request,response)=>{
-//     response.send("home route")
-// });
 
  app.use("/listings",listingsRouter);
  app.use("/listings/:id/reviews/",reviewsRouter);
  app.use("/",usersRouter);
 
-// app.get("/testlisting",async (request,response)=>{
-//  let sampleListing =  new Listing({
-//     title: "Farm stay in Kempty falls,",
-//     description:"Furry friends welcome",
-//     price:45000,
-//     location:" Mussoorie",
-//     country:"India",
-//  });
 
-//  await sampleListing.save();
-//  console.log("sample was saved");
-//  response.send("sussfull testing");
-// });
-
-
+app.all("*",(request,response,next)=>{
+    next(new ExpressError(404,"Page Not Found"))
+});
 
 
 app.use((error,request,response,next)=>{
@@ -116,9 +102,7 @@ app.use((error,request,response,next)=>{
     // response.status(statusCode).send(message);
 });
 
-app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"))
-});
+
 
 const port = 8080;
 app.listen(8080,()=>{
