@@ -80,11 +80,6 @@ async function main(){
  app.use("/listings/:id/reviews/",reviewsRouter);
  app.use("/",usersRouter);
 
-
-app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"));
-});
-
 app.use((error,request,response,next)=>{
     let {statusCode = 500,message = "something went wrong"} = error;
     response.status(statusCode).render("error.ejs",{message});
