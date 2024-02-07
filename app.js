@@ -109,7 +109,7 @@ async function main(){
 
 
 app.all("*",(request,response,next)=>{
-    next( )
+    next(new ExpressError(404,"Page Not Found"))
 });
 
 app.use((error,request,response,next)=>{
