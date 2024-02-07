@@ -20,8 +20,8 @@ const reviewsRouter = require("./routes/review.js");
 const usersRouter = require("./routes/user.js");
 const { error } = require('console');
 
-const  MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
-// const DB_URL = `mongodb+srv://siddharthkumarrai777:QOcneLRD4y1diZcR@cluster0.yjhd9gi.mongodb.net/?retryWrites=true&w=majority`;
+//const  MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+const DB_URL = `mongodb+srv://siddharthkumarrai777:QOcneLRD4y1diZcR@cluster0.yjhd9gi.mongodb.net/?retryWrites=true&w=majority`;
 
 
 
@@ -33,9 +33,9 @@ app.engine(`ejs`,ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
-    mongoUrl: MONGO_URL,
+    mongoUrl: DB_URL,
     crypto:{
-        secret:"supersecretcode",
+        secret:process.env.SECRET,
     },
     touchAfter: 24*3600,
 });
@@ -46,7 +46,7 @@ store.on(error,(error)=>{
 
 const sessionOption = {
     store,
-    secret: "supersecretcode",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie:{
@@ -72,17 +72,17 @@ app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currentUser = req.user;
-    next();
+    next()
 })
 
 main()
 .then(()=>{
-    console.log("connection successfull");
+    console.log("connection successfull")
 }).catch((error)=>{
-    console.log(error);
+    console.log(error)
 })
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(MONGO_URL)
 };
 
 // app.get("/",(request,response)=>{
@@ -109,7 +109,7 @@ async function main(){
 
 
 app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"));
+    next(new ExpressError(404,"Page Not Found"))
 });
 
 app.use((error,request,response,next)=>{
