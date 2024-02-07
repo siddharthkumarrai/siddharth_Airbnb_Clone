@@ -1,0 +1,193 @@
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif;font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.map{
+    height: 300px;
+    width: 90vh;
+}
+
+/* index page container */
+.container {
+display: flex; 
+flex-direction: column; 
+
+}
+
+.box {
+margin-bottom: 10px; /* index page box*/
+}
+
+/* card  */
+
+.indexcard{
+    width: 25rem !important;
+ }
+
+.showcard{
+    width: 40rem;
+}
+
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+    margin-right: 5rem;
+}
+
+.card-img-top{
+    margin: auto 0;
+    border-radius: 1.7rem !important;
+    width: 100% !important;
+    height: 18rem !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p{
+   font-weight: 400 !important;
+   
+
+}
+
+.listing-link{
+    text-decoration: none;
+ }
+
+ .card-img-overlay{
+    opacity: 0;
+ }
+
+ .card-img-overlay:hover{
+    opacity: 0.3;
+    background-color: aliceblue;
+ }
+
+/* navbar */
+
+.navbar{
+    height: 5rem;
+    background-color: white !important;
+    border: none !important;
+}
+
+.air{
+    display: inline;
+    font-size: 2rem;
+    color: rgb(255, 90, 95);
+}
+
+
+.nav-link{
+    color: rgb(0, 0, 0) !important;
+}
+
+/* nav serch */
+.search{
+    margin-left: 40%;
+  }
+.searchbtn{
+    background-color: rgb(255,90,95) !important;
+    color: white !important;
+    border-radius: 1rem !important;
+  }
+  .searchinp{
+    border-radius: 0rem 1rem 0rem 1rem !important;
+  }
+  .searchbtn:hover{
+    background-color: crimson;
+    color: white;
+    border-radius: 1rem;
+  }
+
+/* footer */
+
+.f-info-links a {
+    text-decoration: none;
+    color: black;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-links,.f-info-socials,.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.f-info-socials i {
+   margin-right: 1.7rem; 
+   font-size: 1.5rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 6rem;
+    background-color: darkgrey;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+.fa-square-github{
+    background-color: rgb(255, 255, 255);
+     color: rgb(0, 0, 0)
+}
+.fa-square-facebook{
+    background-color: white;
+}
+.fa-square-instagram{
+    background-color: white ;
+    color:rgb(228, 64, 95);
+}
+.fa-linkedin{
+    background-color: white;
+}
+
+
+ .add-btn{
+    background-color: aqua !important;
+    border: none !important;
+ }
+
+ /* toggle tax info */
+.tax-toggle{
+    border: solid black 1px;
+    border-radius: 1rem;
+    height: 2rem;
+    width: 16rem;
+    
+  }
+
+.tax-info{
+  display: none ;
+ }
+ .loginform{
+    height: 760px;
+ }
+ .signupform{
+    height: 760px;
+ }
+ 
+ /* responsive nature */
+
+@media screen and (max-width: 600px) {
+    .map{
+        width: 100%; /* Set full width on small screens */
+    }
+    .showcard{
+        width: 100%; /* Set full width for items on small screens */
+    }
+    .indexcard{
+        width: 100%;
+    }
+}
+ 

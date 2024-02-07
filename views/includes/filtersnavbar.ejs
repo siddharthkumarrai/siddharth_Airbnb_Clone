@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Right-Left Arrow Scrolling Navbar</title>
+    <link rel="stylesheet" href="/css/filtersstyle.css">
+
+</head>
+<body>
+  
+  <div class="filtercontainer">
+    <div class="scroll-button" onclick="scrollMenu('left')"><big><i class="fa-regular fa-circle-left"></i></big></div>
+      <div class="menu-container" id="menuContainer">
+    
+         <div class="menu filterbox">
+           <div>
+             <i class="fa-solid fa-house-flood-water"></i>
+                  <p>rooms</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+            <i class="fa-solid fa-sun-plant-wilt"></i>
+                <p>Desert</p>
+          </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+            <i class="fa-brands fa-superpowers"></i>
+                <p>Golfing</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+             <i class="fa-solid fa-water"></i>
+                <p>Lake</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+             <i class="fa-solid fa-umbrella-beach"></i>
+                <p>Beachfront</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+             <i class="fa-solid fa-mug-saucer"></i>
+                <p>Bed & breakfasts</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+           <div>
+             <i class="fa-solid fa-mug-saucer"></i>
+                <p>Boats</p>
+           </div>
+         </div>
+
+         <div class="menu box">
+          <div>
+            <i class="fa-solid fa-store"></i>
+                <p>Store</p>
+          </div>
+         </div>
+
+       <div class="menu box">
+        <div>
+          <i class="fa-solid fa-ship"></i>
+                <p>Ship</p>
+        </div>
+       </div>
+
+       <div class="menu box">
+        <div>
+          <i class="fa-solid fa-place-of-worship"></i>
+                <p>Fort</p>
+        </div>
+       </div>
+
+       <div class="menu box">
+         <div>
+            <i class="fa-solid fa-ship"></i>
+                <p>Ship</p>
+         </div>
+       </div>
+
+       <div class="menu box">
+         <div>
+           <i class="fa-solid fa-tower-observation"></i>
+                <p>Tower</p>
+         </div>
+       </div>
+   
+</div>
+
+<div class="scroll-button" onclick="scrollMenu('right')"><big><i class="fa-regular fa-circle-right"></i></big></div>
+
+<div class="form-check-reverse form-switch">
+  <div class="taxp">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    <label class="form-check-label " for="flexSwitchCheckDefault"><p>Display after taxes</p></label>
+  </div>
+  
+</div>
+
+  <script>
+      let taxswitch = document.getElementById("flexSwitchCheckDefault");
+      taxswitch.addEventListener("click",()=>{
+        let taxinfo= document.getElementsByClassName("tax-info");
+        for(info of taxinfo){
+          if(info.style.display != "inline"){
+            info.style.display = "inline";
+          }else{
+            info.style.display = "none";
+          }
+        }
+      });
+    
+  </script>
+
+  <script>
+     function scrollMenu(direction) {
+     var menuContainer = document.getElementById('menuContainer');
+     var scrollDistance = 200; // Adjust scroll distance as needed
+        if (direction === 'left') {
+         menuContainer.scrollLeft -= scrollDistance;
+        } else {
+           menuContainer.scrollLeft += scrollDistance;
+          }
+     }
+  </script>
+  
+</div>
+
+</body>
+</html>

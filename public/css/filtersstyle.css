@@ -1,0 +1,47 @@
+/* Container for the three divs */
+/* Some basic styling for demonstration */
+.menu-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.menu {
+    display: inline-block;
+    margin-right: 20px;
+    opacity: 0.7;
+}
+       
+.menu:hover {
+    color: black;
+    opacity: 1;
+    cursor: pointer;
+}
+    
+.scroll-button {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+            
+}
+/* Container for the three divs */
+.filtercontainer {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space out the divs evenly */
+    margin-top: 5px;
+            
+}
+    
+/* Individual divs */
+.filterbox {
+    margin-left: 25px;
+}
+
+.form-switch{
+    width: 13rem;
+    height: fit-content;
+    border: solid black 2px;
+    border-radius: 1rem;
+}
+.taxp{
+    padding-right: 9px;
+    padding-top: 5px;
+}
