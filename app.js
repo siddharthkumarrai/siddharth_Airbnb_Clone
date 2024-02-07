@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require('dotenv').config();
+};
+
 const express = require("express");
 const MongoStore = require('connect-mongo');
 const app = express();
@@ -16,7 +20,10 @@ const reviewsRouter = require("./routes/review.js");
 const usersRouter = require("./routes/user.js");
 const { error } = require('console');
 
-const DB_URL = `mongodb+srv://siddharthkumarrai777:QOcneLRD4y1diZcR@cluster0.yjhd9gi.mongodb.net/?retryWrites=true&w=majority`;
+const  MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+// const DB_URL = `mongodb+srv://siddharthkumarrai777:QOcneLRD4y1diZcR@cluster0.yjhd9gi.mongodb.net/?retryWrites=true&w=majority`;
+
+
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -26,9 +33,9 @@ app.engine(`ejs`,ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
-    mongoUrl: DB_URL,
+    mongoUrl: MONGO_URL,
     crypto:{
-        secret:process.env.SECRET,
+        secret:"supersecretcode",
     },
     touchAfter: 24*3600,
 });
@@ -39,7 +46,7 @@ store.on(error,(error)=>{
 
 const sessionOption = {
     store,
-    secret: process.env.SECRET,
+    secret: "supersecretcode",
     resave: false,
     saveUninitialized: true,
     cookie:{
@@ -48,6 +55,8 @@ const sessionOption = {
         httpOnly: true,
     }
 };
+
+
 
 app.use(session(sessionOption));
 app.use(flash());
@@ -73,21 +82,40 @@ main()
     console.log(error);
 })
 async function main(){
-    await mongoose.connect(DB_URL);
+    await mongoose.connect(MONGO_URL);
 };
+
+// app.get("/",(request,response)=>{
+//     response.send("home route")
+// });
 
  app.use("/listings",listingsRouter);
  app.use("/listings/:id/reviews/",reviewsRouter);
  app.use("/",usersRouter);
 
+// app.get("/testlisting",async (request,response)=>{
+//  let sampleListing =  new Listing({
+//     title: "Farm stay in Kempty falls,",
+//     description:"Furry friends welcome",
+//     price:45000,
+//     location:" Mussoorie",
+//     country:"India",
+//  });
+
+//  await sampleListing.save();
+//  console.log("sample was saved");
+//  response.send("sussfull testing");
+// });
+
 
 app.all("*",(request,response,next)=>{
-    next(new ExpressError(404,"Page Not Found"))
+    next(new ExpressError(404,"Page Not Found"));
 });
 
 app.use((error,request,response,next)=>{
     let {statusCode = 500,message = "something went wrong"} = error;
     response.status(statusCode).render("error.ejs",{message});
+    // response.status(statusCode).send(message);
 });
 
 
