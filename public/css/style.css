@@ -32,6 +32,7 @@ margin-bottom: 10px; /* index page box*/
 
 .showcard{
     width: 40rem;
+    border: none !important;
 }
 
 .card-img-top{
