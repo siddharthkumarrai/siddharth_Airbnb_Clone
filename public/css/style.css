@@ -25,16 +25,13 @@ margin-bottom: 10px; /* index page box*/
 
 .indexcard{
     width: 25rem !important;
+    border: none !important;
+    margin-bottom: 2rem;
+    margin-right: 5rem;
  }
 
 .showcard{
     width: 40rem;
-}
-
-.card{
-    border: none !important;
-    margin-bottom: 2rem;
-    margin-right: 5rem;
 }
 
 .card-img-top{
