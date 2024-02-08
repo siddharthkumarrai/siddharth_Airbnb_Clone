@@ -174,7 +174,16 @@ margin-bottom: 10px; /* index page box*/
  .signupform{
     height: 760px;
  }
- 
+.reviewcard{
+    width: 25% !important;
+ }
+
+ .showbody{
+    width: fit-content;
+ }
+ .indexbody{
+    width: fit-content !important;
+ }
  /* responsive nature */
 
 @media screen and (max-width: 600px) {
@@ -187,5 +196,11 @@ margin-bottom: 10px; /* index page box*/
     .indexcard{
         width: 100%;
     }
+    .reviewcard{
+        width: 100% !important;
+     }
+     .indexbody{
+        width: 25% !important;
+     }
 }
  
