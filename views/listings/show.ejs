@@ -91,7 +91,6 @@
             Rated: 3 stars
           </p>
           <p class="card-text"><%= review.comment %> .</p>
-          <p class="card-text">Star</p>
           <% if (currentUser) { %>
             <form class="mb-3"  method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
               <button class="btn btn-sm mb-3 btn-dark">Delete</button>
