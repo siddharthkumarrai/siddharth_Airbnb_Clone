@@ -21,7 +21,7 @@ const usersRouter = require("./routes/user.js");
 const { error } = require('console');
 
 //const  MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
-const DB_URL = `mongodb+srv://siddharthkumarrai777:QOcneLRD4y1diZcR@cluster0.yjhd9gi.mongodb.net/?retryWrites=true&w=majority`;
+const DB_URL = process.env.MONGO_ATLAS_URL;
 
 
 
