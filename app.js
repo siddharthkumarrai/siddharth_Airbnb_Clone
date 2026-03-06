@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV != "production") {
     require('dotenv').config();
 }
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -46,10 +45,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Mongo Session Store Configuration
 const store = MongoStore.create({
     mongoUrl: DB_URL,
-    crypto: {
-        secret: process.env.SECRET,
-    },
+    secret: process.env.SECRET,
     touchAfter: 24 * 3600, // session update interval
+    autoRemove: 'native',
 });
 
 // Fix: store.on error handling
@@ -60,10 +58,10 @@ store.on("error", (err) => {
 const sessionOption = {
     store,
     secret: process.env.SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
     }
@@ -81,13 +79,22 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+    if (req.path.startsWith('/css') || req.path.startsWith('/js') || req.path === '/favicon.ico') {
+        return next(); // skip flash for static files
+    }
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currentUser = req.user;
+    console.log(`${req.method} ${req.path} - Flash:`, res.locals.success); // ← change this
     next();
 });
 
 app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
+app.get("/flashtest", (req, res) => {
+    req.flash("success", "TEST MESSAGE");
     res.redirect("/listings");
 });
 

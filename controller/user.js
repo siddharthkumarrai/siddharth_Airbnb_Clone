@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const passport = require("passport");
 
 module.exports.signupform = (req,res)=>{
     res.render("users/signup.ejs");
@@ -26,10 +27,31 @@ module.exports.loginform = (req,res)=>{
     res.render("users/login.ejs");
 };
 
-module.exports.postlogin = async(req,res)=>{
-    req.flash("success","Welcome back on Wandarlust");
-    let redirectUrl = res.locals.redirectUrl || "/listings" ;
-    res.redirect(redirectUrl);
+module.exports.postlogin = async (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+        console.log("ERR:", err);
+        console.log("USER:", user);
+        console.log("INFO:", info);
+        
+        if (err) return next(err);
+
+        if (!user) {
+            if (info && info.name === "IncorrectUsernameError") {
+                req.flash("error", "No account found with that username. Please sign up!");
+                return res.redirect("/signup");
+            }
+            req.flash("error", "Incorrect password. Please try again.");
+            return res.redirect("/login");
+        }
+
+        req.login(user, (err) => {
+            if (err) return next(err);
+            req.flash("success", "Welcome back to Wanderlust!");
+            let redirectUrl = req.session.redirectUrl || "/listings";
+            delete req.session.redirectUrl;
+            return res.redirect(redirectUrl);
+        });
+    })(req, res, next);
 };
 
 module.exports.logout = (req,res,next)=>{

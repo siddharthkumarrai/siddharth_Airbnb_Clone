@@ -16,4 +16,13 @@
         form.classList.add('was-validated')
       }, false)
     })
+
+    // Auto-dismiss flash messages after 5 seconds
+setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(alert => {
+        alert.classList.remove('show');
+        setTimeout(() => alert.remove(), 300); // wait for fade animation
+    });
+}, 3000);
   })()
+
