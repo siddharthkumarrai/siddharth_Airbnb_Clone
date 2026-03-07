@@ -19,6 +19,7 @@ const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const usersRouter = require("./routes/user.js");
 
+
 const DB_URL = process.env.MONGO_ATLAS_URL;
 
 // Database Connection
